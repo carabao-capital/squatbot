@@ -26,6 +26,7 @@ const Cache = new EventCache(60000);
 */
 module.exports = (context, callback) => {
 
+/*
   let params = context.params;
 
   if (params.challenge) {
@@ -98,5 +99,6 @@ module.exports = (context, callback) => {
       }
     );
   });
+*/
 
 };

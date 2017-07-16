@@ -14,8 +14,10 @@ const ENV = {
 */
 module.exports = (callback) => {
 
+/*
   ejs.renderFile(template, ENV, {}, (err, response) => {
     callback(err, new Buffer(response || ''), {'Content-Type': 'text/html'});
   });
+*/
 
 };

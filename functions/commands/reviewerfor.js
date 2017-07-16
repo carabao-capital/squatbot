@@ -1,5 +1,19 @@
 const lib = require('lib')({token: process.env.STDLIB_TOKEN});
 
+let devs_id = ["U5RT71ZKQ", "U0YL17DBQ", "U4TDX4QSH", "U4SK3RBPS", "U5X3KN2AV", "U5AG3CY7M", "U4X6FDG95"]
+
+let devs = [
+  "dc",
+  "earle",
+  "francis",
+  "nmfdelacruz",
+  "sachink",
+  "vicente",
+  "yogesh.khater"
+]
+
+let count = 0
+
 /**
 * /hello
 *
@@ -17,10 +31,11 @@ const lib = require('lib')({token: process.env.STDLIB_TOKEN});
 * @returns {object}
 */
 module.exports = (user, channel, text = '', command = {}, botToken = null, callback) => {
+  if(user.toString() === devs_id[count%devs_id.length].toString()) { count+=1 }
 
   callback(null, {
-    response_type: 'in_channel',
-    text: `Hello, <@${user}>...\nYou said: ${text}`
+    text: `Hi <@${devs_id[count%devs_id.length]}>! <@${user}> asked you to code review his PR ${text}`
   });
 
+  count+=1
 };
