@@ -1,25 +1,29 @@
 const lib = require('lib')({token: process.env.STDLIB_TOKEN});
 
-let devs_id = ["U5RT71ZKQ", "U0YL17DBQ", "U4TDX4QSH", "U4SK3RBPS", "U5X3KN2AV", "U5AG3CY7M", "U4X6FDG95"]
+let seniorDevIds = [
+  "U4SK3RBPS",
+  "U5AG3CY7M"
+];
 
-let devs = [
-  "dc",
-  "earle",
-  "francis",
-  "nmfdelacruz",
-  "sachink",
-  "vicente",
-  "yogesh.khater"
-]
-
-let count = 0
+let devIds = [
+  "U5RT71ZKQ",
+  "U0YL17DBQ",
+  "U4TDX4QSH",
+  "U5X3KN2AV",
+  "U4X6FDG95"
+];
 
 /**
-* /hello
-*
-*   Basic "Hello World" command.
-*   All Commands use this template, simply create additional files with
-*   different names to add commands.
+* @dc = "U5RT71ZKQ",
+* @earle = "U0YL17DBQ",
+* @francis = "U4TDX4QSH",
+* @nmfdelacruz = "U4SK3RBPS",
+* @sachink = "U5X3KN2AV",
+* @vicente = "U5AG3CY7M",
+* @yogesh.khather "U4X6FDG95"
+*/
+
+/**
 *
 *   See https://api.slack.com/slash-commands for more details.
 *
@@ -31,11 +35,20 @@ let count = 0
 * @returns {object}
 */
 module.exports = (user, channel, text = '', command = {}, botToken = null, callback) => {
-  if(user.toString() === devs_id[count%devs_id.length].toString()) { count+=1 }
+  let randomDevId;
+  let randomSeniorDevId;
+
+  do {
+    randomDevId = Math.floor(Math.random() * (devIds.length));
+  } while(devIds[randomDevId] === user)
+
+
+  do {
+    randomSeniorDevId = Math.floor(Math.random() * (seniorDevIds.length));
+  } while(seniorDevIds[randomSeniorDevId] === user)
 
   callback(null, {
-    text: `Hi <@${devs_id[count%devs_id.length]}>! <@${user}> asked you to code review his PR ${text}`
+    text: `Hi <@${devIds[randomDevId]}> and <@${seniorDevIds[randomSeniorDevId]}>!
+    <@${user}> asked you guys to code review this PR here ${text}`
   });
-
-  count+=1
 };
